@@ -54,6 +54,6 @@ export class TbIotHubUpgradeRequiredDialogComponent extends DialogComponent<TbIo
   }
 
   upgradeInstance(): void {
-    window.open('https://thingsboard.io/docs/installation/upgrade-instructions/', '_blank');
+    window.open('https://aerotrack.io/docs/installation/upgrade-instructions/', '_blank');
   }
 }

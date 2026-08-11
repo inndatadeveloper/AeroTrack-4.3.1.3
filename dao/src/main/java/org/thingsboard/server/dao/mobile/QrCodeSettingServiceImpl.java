@@ -43,9 +43,9 @@ public class QrCodeSettingServiceImpl extends AbstractCachedEntityService<Tenant
     public static final String INCORRECT_TENANT_ID = "Incorrect tenantId ";
     private static final String DEFAULT_QR_CODE_LABEL = "Scan to connect or download mobile app";
 
-    @Value("${mobileApp.googlePlayLink:https://play.google.com/store/apps/details?id=org.thingsboard.demo.app}")
+    @Value("${mobileApp.googlePlayLink:https://play.google.com/store/apps/details?id=org.aerotrack.demo.app}")
     private String googlePlayLink;
-    @Value("${mobileApp.appStoreLink:https://apps.apple.com/us/app/thingsboard-live/id1594355695}")
+    @Value("${mobileApp.appStoreLink:https://apps.apple.com}")
     private String appStoreLink;
 
     private final QrCodeSettingsDao qrCodeSettingsDao;

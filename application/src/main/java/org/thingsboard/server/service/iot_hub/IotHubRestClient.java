@@ -37,7 +37,7 @@ import java.time.Duration;
 @Slf4j
 public class IotHubRestClient {
 
-    @Value("${iot-hub.base-url:https://iot-hub.thingsboard.io}")
+    @Value("${iot-hub.base-url:https://iot-hub.aerotrack.io}")
     private String baseUrl;
 
     @Value("${iot-hub.connect-timeout-sec:5}")

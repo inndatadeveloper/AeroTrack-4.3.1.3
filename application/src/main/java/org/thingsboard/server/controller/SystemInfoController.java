@@ -81,7 +81,7 @@ public class SystemInfoController extends BaseController {
     @Value("${sql.entity_data_query_nulls_order_strategy:default}")
     private String nullsOrderStrategy;
 
-    @Value("${iot-hub.base-url:https://iot-hub.thingsboard.io}")
+    @Value("${iot-hub.base-url:https://iot-hub.aerotrack.io}")
     private String iotHubBaseUrl;
 
     private static final Set<String> ACCEPTED_NULLS_ORDER_STRATEGIES = Set.of("default", "nulls_first", "nulls_last");

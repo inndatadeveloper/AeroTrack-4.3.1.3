@@ -1,0 +1,71 @@
+#
+# Copyright © 2016-2026 The Thingsboard Authors
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: aerotrack-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: aerotrack
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - aerotrack-postgres-data:/var/lib/postgresql/data
+    networks:
+      - aerotrack-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    build:
+      context: ..
+      dockerfile: docker-deployment/Dockerfile
+    image: aerotrack:latest
+    container_name: aerotrack-app
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DB_HOST: postgres
+      DB_PORT: "5432"
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/aerotrack
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      UPDATES_ENABLED: "false"
+      TB_QUEUE_TYPE: in-memory
+    ports:
+      - "8080:8080"
+      - "1883:1883"   # MQTT
+      - "5683:5683/udp"  # CoAP
+    volumes:
+      - aerotrack-data:/aerotrack/data
+      - aerotrack-logs:/aerotrack/logs
+    networks:
+      - aerotrack-network
+
+networks:
+  aerotrack-network:
+    driver: bridge
+
+volumes:
+  aerotrack-postgres-data:
+  aerotrack-data:
+  aerotrack-logs:

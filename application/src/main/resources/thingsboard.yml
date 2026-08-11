@@ -2162,14 +2162,14 @@ management:
       # Enable the org.springframework.boot.actuate.elasticsearch.ElasticsearchRestClientHealthIndicator.doHealthCheck
       enabled: "false"
 
-# Mobile application settings for Thingsboard mobile application
+# Mobile application settings for AeroTrack mobile application
 mobileApp:
-  # Server domain name for Thingsboard Live mobile application
-  domain: "${TB_MOBILE_APP_DOMAIN:demo.thingsboard.io}"
-  # Link to Google Play store for Thingsboard Live mobile application
-  googlePlayLink: "${TB_MOBILE_APP_GOOGLE_PLAY_LINK:https://play.google.com/store/apps/details?id=org.thingsboard.demo.app}"
-  # Link to App Store for Thingsboard Live mobile application
-  appStoreLink: "${TB_MOBILE_APP_APP_STORE_LINK:https://apps.apple.com/us/app/thingsboard-live/id1594355695}"
+  # Server domain name for AeroTrack Live mobile application
+  domain: "${TB_MOBILE_APP_DOMAIN:demo.aerotrack.io}"
+  # Link to Google Play store for AeroTrack Live mobile application
+  googlePlayLink: "${TB_MOBILE_APP_GOOGLE_PLAY_LINK:https://play.google.com/store/apps/details?id=org.aerotrack.demo.app}"
+  # Link to App Store for AeroTrack Live mobile application
+  appStoreLink: "${TB_MOBILE_APP_APP_STORE_LINK:https://apps.apple.com"
 
 mqtt:
   # MQTT client configuration parameters
@@ -2195,7 +2195,7 @@ mqtt:
       # For example, a jitter_factor of 0.15 means the actual delay may vary by up to ±15% of the base delay.
       jitter_factor: "${TB_MQTT_CLIENT_RETRANSMISSION_JITTER_FACTOR:0.15}"
 iot-hub:
-  base-url: "${IOT_HUB_BASE_URL:https://iot-hub.thingsboard.io}" # IoT Hub base URL for fetching published items, resources, etc.
+  base-url: "${IOT_HUB_BASE_URL:https://iot-hub.aerotrack.io}" # IoT Hub base URL for fetching published items, resources, etc.
   connect-timeout-sec: "${IOT_HUB_CONNECT_TIMEOUT_SEC:5}" # timeout in seconds to connect to IoT Hub server.
   read-timeout-sec: "${IOT_HUB_READ_TIMEOUT_SEC:10}" # timeout in seconds to read from IoT Hub server.
   max-file-data-size-bytes: "${IOT_HUB_MAX_FILE_DATA_SIZE_BYTES:104857600}" # maximum size in bytes of a file-data payload fetched from IoT Hub. Requests advertising a larger Content-Length, or streams that exceed this size, are rejected to avoid out-of-memory issues on the platform side.
